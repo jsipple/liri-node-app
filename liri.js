@@ -5,6 +5,8 @@ var spotify = new Spotify({
   secret: "d0831b740ea646828f188d9fb95a1fae"
 });
 
+var moment = require('moment');
+
 // require("dotenv").config();
 // var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
@@ -30,6 +32,7 @@ switch (arg1) {
             console.log(response.data[0].venue.name)
             console.log(response.data[0].venue.city)
             // need to convert this using moment.js
+            console.log(moment(response.data[0].datetime).format("L"))
             console.log(response.data[0].datetime)
         })
         break;
