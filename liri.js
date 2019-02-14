@@ -17,6 +17,7 @@ let artist;
 let movie;
 const fs = require("fs");
 
+function liri() {
 switch (arg1) {
     case "concert-this":
         artist = arg2
@@ -26,11 +27,15 @@ switch (arg1) {
         })
         .then(function(response) {
             // need to also add moment in here
-            console.log(response)
+            console.log(response.data[0].venue.name)
+            console.log(response.data[0].venue.city)
+            // need to convert this using moment.js
+            console.log(response.data[0].datetime)
         })
         break;
     case "spotify-this-song":
     // saying unauthorized
+    // if no arg2 put in the sign by ace of base
     spotify.search({ type: 'track', query: arg2}, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
@@ -38,7 +43,8 @@ switch (arg1) {
         // need to make a for loop for this
       console.log(data.tracks.items[0].artists[0].name); 
       console.log(data.tracks.items[0].name); 
-      console.log(data.tracks.items[0].name.spotify); 
+      console.log(data.tracks.items[0].external_urls.spotify); 
+      console.log(data.tracks.items[0].album.name); 
       });
         break;
     case "movie-this":
@@ -61,6 +67,11 @@ switch (arg1) {
     case "do-what-it-says":
     // could probably edit it read any file by changing the random.txt to a variable with txt always added to it
         const read = fs.readFileSync('./random.txt', "utf-8")
-        console.log(read)
+        let reading = read.split(" ")
+        arg1 = reading[0]
+        arg2 = reading.splice(1,)
+        liri()
         break;
 }
+}
+liri()
