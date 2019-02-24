@@ -38,7 +38,7 @@ switch (a1) {
     case "spotify-this-song":
     // if no arg2 put in the sign by ace of base
     if (a2 === '') {
-      a2="sign"
+      a2="The Sign"
     }
     spotify.search({ type: 'track', query: a2}, function(err, data) {
         if (err) {
