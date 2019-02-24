@@ -19,7 +19,7 @@ let artist;
 let movie;
 const fs = require("fs");
 
-function liri(a1, a2="ace of base") {
+function liri(a1, a2) {
 switch (a1) {
     case "concert-this":
         artist = a2
@@ -36,19 +36,20 @@ switch (a1) {
         })
         break;
     case "spotify-this-song":
-    // saying unauthorized
-    console.log(a2)
-    // // if no arg2 put in the sign by ace of base
-    // spotify.search({ type: 'track', query: a2}, function(err, data) {
-    //     if (err) {
-    //       return console.log('Error occurred: ' + err);
-    //     }
-    //     // need to make a for loop for this
-    //   console.log(data.tracks.items[0].artists[0].name); 
-    //   console.log(data.tracks.items[0].name); 
-    //   console.log(data.tracks.items[0].external_urls.spotify); 
-    //   console.log(data.tracks.items[0].album.name); 
-    //   });
+    // if no arg2 put in the sign by ace of base
+    if (a2 === '') {
+      a2="sign"
+    }
+    spotify.search({ type: 'track', query: a2}, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+        // need to make a for loop for this
+      console.log(data.tracks.items[0].artists[0].name); 
+      console.log(data.tracks.items[0].name); 
+      console.log(data.tracks.items[0].external_urls.spotify); 
+      console.log(data.tracks.items[0].album.name); 
+      });
         break;
     case "movie-this":
     movie = a2
