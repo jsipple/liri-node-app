@@ -19,39 +19,39 @@ let artist;
 let movie;
 const fs = require("fs");
 
-function liri() {
-switch (arg1) {
+function liri(a1, a2="ace of base") {
+switch (a1) {
     case "concert-this":
-        artist = arg2
+        artist = a2
         axios({
             method: 'get',
             url: "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp",
         })
         .then(function(response) {
             // need to also add moment in here
-            console.log(response.data[0].venue.name)
+            console.log("Venue: " + response.data[0].venue.name)
             console.log(response.data[0].venue.city)
             // need to convert this using moment.js
             console.log(moment(response.data[0].datetime).format("L"))
-            console.log(response.data[0].datetime)
         })
         break;
     case "spotify-this-song":
     // saying unauthorized
-    // if no arg2 put in the sign by ace of base
-    spotify.search({ type: 'track', query: arg2}, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        }
-        // need to make a for loop for this
-      console.log(data.tracks.items[0].artists[0].name); 
-      console.log(data.tracks.items[0].name); 
-      console.log(data.tracks.items[0].external_urls.spotify); 
-      console.log(data.tracks.items[0].album.name); 
-      });
+    console.log(a2)
+    // // if no arg2 put in the sign by ace of base
+    // spotify.search({ type: 'track', query: a2}, function(err, data) {
+    //     if (err) {
+    //       return console.log('Error occurred: ' + err);
+    //     }
+    //     // need to make a for loop for this
+    //   console.log(data.tracks.items[0].artists[0].name); 
+    //   console.log(data.tracks.items[0].name); 
+    //   console.log(data.tracks.items[0].external_urls.spotify); 
+    //   console.log(data.tracks.items[0].album.name); 
+    //   });
         break;
     case "movie-this":
-    movie = arg2
+    movie = a2
     axios({
             url: "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy",
             method: "GET"
@@ -71,10 +71,8 @@ switch (arg1) {
     // could probably edit it read any file by changing the random.txt to a variable with txt always added to it
         const read = fs.readFileSync('./random.txt', "utf-8")
         let reading = read.split(" ")
-        arg1 = reading[0]
-        arg2 = reading.splice(1,)
-        liri()
+        liri(reading[0], reading.splice(1,))
         break;
 }
 }
-liri()
+liri(arg1, arg2)
