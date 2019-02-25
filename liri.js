@@ -45,10 +45,13 @@ switch (a1) {
           return console.log('Error occurred: ' + err);
         }
         // need to make a for loop for this
-      console.log(data.tracks.items[0].artists[0].name); 
-      console.log(data.tracks.items[0].name); 
-      console.log(data.tracks.items[0].external_urls.spotify); 
-      console.log(data.tracks.items[0].album.name); 
+        for (let i = 0; i < 20; i++) {
+      console.log(data.tracks.items[i].artists[0].name); 
+      console.log(data.tracks.items[i].name); 
+      console.log(data.tracks.items[i].external_urls.spotify); 
+      console.log(data.tracks.items[i].album.name); 
+      console.log('------------')
+        }
       });
         break;
     case "movie-this":
